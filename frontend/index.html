@@ -1,0 +1,48 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>부재검수 웹앱</title>
+  <style>
+    body { font-family: sans-serif; text-align: center; margin-top: 20px; }
+    #preview { width: 100%; max-width: 400px; margin-top: 10px; }
+    iframe { width: 100%; height: 600px; border: 1px solid #ccc; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h2>📷 강재부재 검수</h2>
+  <input type="file" accept="image/*" capture="environment" id="cameraInput" />
+  <img id="preview" />
+  <iframe id="pdfViewer"></iframe>
+
+  <script>
+    const input = document.getElementById("cameraInput");
+    const preview = document.getElementById("preview");
+    const pdfViewer = document.getElementById("pdfViewer");
+
+    input.addEventListener("change", async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      preview.src = URL.createObjectURL(file);
+
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await fetch("https://your-backend-url.onrender.com/upload/", {
+        method: "POST",
+        body: formData
+      });
+      const data = await res.json();
+
+      if (data.status === "ok") {
+        pdfViewer.src = `https://your-backend-url.onrender.com${data.pdf_url}`;
+      } else {
+        pdfViewer.src = "";
+        alert(`PDF를 찾을 수 없습니다. 인식된 텍스트: ${data.recognized}`);
+      }
+    });
+  </script>
+</body>
+</html>

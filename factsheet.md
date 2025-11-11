@@ -1,0 +1,2 @@
+## gemini api docs
+- https://ai.google.dev/gemini-api/docs/quickstart?gclsrc=aw.ds&gad_source=1&gad_campaignid=21002365376&gbraid=0AAAAACn9t64bOrnbmKD1eGUdakUw0_3CW&gclid=CjwKCAiA2svIBhB-EiwARWDPjgHU5bbrC_KhlmBmOYt1hXLglCnkwzUUv1Z5ypxT0yEFjKLjgmoL0BoC_5YQAvD_BwE&hl=ko
